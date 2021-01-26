@@ -58,21 +58,4 @@ public abstract class Gladiator {
         // Todo
         return name;
     }
-
-    public enum Multiplier {
-        Low(0.75),
-        Medium(1.0),
-        High(1.25);
-
-        private final double value;
-
-        Multiplier(double value) {
-            this.value = value;
-        }
-
-        public double getValue() {
-            return value;
-        }
-    }
-
 }
