@@ -3,10 +3,10 @@ package com.codecool.gladiator.model.gladiators;
 public abstract class Gladiator {
 
     private final String name;
+    private int level;
     private final int baseHp;
     private final int baseSp;
     private final int baseDex;
-    private int level;
 
     /**
      * Constructor for Gladiators
@@ -19,10 +19,10 @@ public abstract class Gladiator {
      */
     public Gladiator(String name, int baseHp, int baseSp, int baseDex, int level) {
         this.name = name;
+        this.level = level;
         this.baseHp = baseHp;
         this.baseSp = baseSp;
         this.baseDex = baseDex;
-        this.level = level;
     }
 
     /**
@@ -44,6 +44,20 @@ public abstract class Gladiator {
     }
 
     /**
+     * @return  gladiator level.
+     */
+    public int getLevel() {
+        return level;
+    }
+
+    /**
+     * Increase a gladiator level.
+     */
+    public void levelUp() {
+        level++;
+    }
+
+    /**
      * @return HP multiplier of the gladiator subclass
      */
     protected abstract Multiplier getHpMultiplier();
@@ -57,18 +71,4 @@ public abstract class Gladiator {
      * @return DEX multiplier of the gladiator subclass
      */
     protected abstract Multiplier getDexMultiplier();
-
-    /**
-     * @return  gladiator level.
-     */
-    public int getLevel() {
-        return level;
-    }
-
-    /**
-     * Increase a gladiator level.
-     */
-    public void levelUp() {
-        level++;
-    }
 }
