@@ -1,6 +1,7 @@
 package com.codecool.gladiator.model;
 
 import com.codecool.gladiator.model.gladiators.*;
+import com.codecool.gladiator.util.Randomizer;
 
 import java.io.File;
 import java.io.IOException;
@@ -27,8 +28,7 @@ public class GladiatorFactory {
      * @return gladiator name
      */
     private String getRandomName() {
-        // Todo
-        return "Brutus";
+        return Randomizer.chooseOne(names.toArray(new String[0]));
     }
 
     /**
