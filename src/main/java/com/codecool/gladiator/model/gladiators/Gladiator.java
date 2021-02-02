@@ -55,7 +55,6 @@ public abstract class Gladiator {
      * @return the full name
      */
     public String getFullName() {
-        // Todo
-        return name;
+        return String.format("%s %s", this.getClass().getSimpleName(), name);
     }
 }
