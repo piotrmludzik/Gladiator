@@ -26,21 +26,6 @@ public abstract class Gladiator {
     }
 
     /**
-     * @return HP multiplier of the gladiator subclass
-     */
-    protected abstract Multiplier getHpMultiplier();
-
-    /**
-     * @return SP multiplier of the gladiator subclass
-     */
-    protected abstract Multiplier getSpMultiplier();
-
-    /**
-     * @return DEX multiplier of the gladiator subclass
-     */
-    protected abstract Multiplier getDexMultiplier();
-
-    /**
      * @return Gladiator's name
      */
     public String getName() {
@@ -57,4 +42,19 @@ public abstract class Gladiator {
     public String getFullName() {
         return String.format("%s %s", this.getClass().getSimpleName(), name);
     }
+
+    /**
+     * @return HP multiplier of the gladiator subclass
+     */
+    protected abstract Multiplier getHpMultiplier();
+
+    /**
+     * @return SP multiplier of the gladiator subclass
+     */
+    protected abstract Multiplier getSpMultiplier();
+
+    /**
+     * @return DEX multiplier of the gladiator subclass
+     */
+    protected abstract Multiplier getDexMultiplier();
 }
