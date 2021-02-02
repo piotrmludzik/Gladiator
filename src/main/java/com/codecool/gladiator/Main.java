@@ -7,9 +7,13 @@ import com.codecool.gladiator.view.ConsoleView;
 public class Main {
 
     public static void main(String[] args) {
-        Colosseum colosseum = new Colosseum(new ConsoleView(), new GladiatorFactory("Names.txt"));
-        colosseum.welcomeAndAskForStages();
-        colosseum.runSimulation();
+        ConsoleView cv = new ConsoleView();
+        cv.display("Hello world!");
+        int n = cv.getNumberBetween(0, 10);
+        cv.display("Given number: " + n);
+//        Colosseum colosseum = new Colosseum(new ConsoleView(), new GladiatorFactory("Names.txt"));
+//        colosseum.welcomeAndAskForStages();
+//        colosseum.runSimulation();
     }
 
 }
