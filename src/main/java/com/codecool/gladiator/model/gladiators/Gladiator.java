@@ -44,17 +44,42 @@ public abstract class Gladiator {
     }
 
     /**
-     * @return  gladiator level.
+     * @return  gladiator level
      */
     public int getLevel() {
         return level;
     }
 
     /**
-     * Increase a gladiator level.
+     * Increase a gladiator level
      */
     public void levelUp() {
         level++;
+    }
+
+    /**
+     * @return maximum avalible HP value
+     */
+    public double getMaxAvalibleHP() {
+        return getMaxAvaliblePropertyValue(baseHp, getHpMultiplier().getValue());
+    }
+
+    /**
+     * @return maximum avalible SP value
+     */
+    public double getMaxAvalibleSP() {
+        return getMaxAvaliblePropertyValue(baseSp, getSpMultiplier().getValue());
+    }
+
+    /**
+     * @return maximum avalible DEX value
+     */
+    public double getMaxAvalibleDEX() {
+        return getMaxAvaliblePropertyValue(baseDex, getDexMultiplier().getValue());
+    }
+
+    private double getMaxAvaliblePropertyValue(int baseValue, double valueMultiplier) {
+        return baseValue * valueMultiplier * level;
     }
 
     /**
