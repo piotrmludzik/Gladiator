@@ -4,6 +4,7 @@ public abstract class Gladiator {
 
     private final String name;
     private int level;
+    private double health;
     private final int baseHp;
     private final int baseSp;
     private final int baseDex;
@@ -23,6 +24,8 @@ public abstract class Gladiator {
         this.baseHp = baseHp;
         this.baseSp = baseSp;
         this.baseDex = baseDex;
+
+        health = getMaxAvalibleHP();
     }
 
     /**
@@ -55,6 +58,20 @@ public abstract class Gladiator {
      */
     public void levelUp() {
         level++;
+    }
+
+    /**
+     * @return a gladiator health points
+     */
+    public double getHealth() {
+        return health;
+    }
+
+    /**
+     * @param health a gladiator health points
+     */
+    public void setHealth(double health) {
+        this.health = health;
     }
 
     /**
