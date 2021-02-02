@@ -1,5 +1,7 @@
 package com.codecool.gladiator.model.gladiators;
 
+import com.codecool.gladiator.model.gladiators.properties.Multiplier;
+
 public class Brutal extends Gladiator {
 
     private static final Multiplier HP_MULTIPLIER = Multiplier.HIGH;

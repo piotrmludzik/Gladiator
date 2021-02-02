@@ -1,10 +1,6 @@
 package com.codecool.gladiator;
 
-import com.codecool.gladiator.controller.Colosseum;
-import com.codecool.gladiator.model.gladiators.Brutal;
-import com.codecool.gladiator.model.gladiators.Gladiator;
-import com.codecool.gladiator.model.gladiators.GladiatorFactory;
-import com.codecool.gladiator.view.ConsoleView;
+import com.codecool.gladiator.model.gladiators.*;
 
 public class Main {
 

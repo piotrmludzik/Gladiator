@@ -1,4 +1,6 @@
-package com.codecool.gladiator.model.gladiators;
+package com.codecool.gladiator.model;
+
+import com.codecool.gladiator.model.gladiators.*;
 
 import java.io.File;
 import java.io.IOException;

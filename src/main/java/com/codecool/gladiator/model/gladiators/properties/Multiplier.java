@@ -1,4 +1,4 @@
-package com.codecool.gladiator.model.gladiators;
+package com.codecool.gladiator.model.gladiators.properties;
 
 public enum Multiplier {
     LOW(0.75),

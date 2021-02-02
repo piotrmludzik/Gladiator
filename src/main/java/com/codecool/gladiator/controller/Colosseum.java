@@ -2,6 +2,7 @@ package com.codecool.gladiator.controller;
 
 import com.codecool.gladiator.model.Combat;
 import com.codecool.gladiator.model.Contestants;
+import com.codecool.gladiator.model.GladiatorFactory;
 import com.codecool.gladiator.model.gladiators.*;
 import com.codecool.gladiator.util.Tournament;
 import com.codecool.gladiator.view.Viewable;

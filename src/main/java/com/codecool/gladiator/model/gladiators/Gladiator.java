@@ -1,5 +1,7 @@
 package com.codecool.gladiator.model.gladiators;
 
+import com.codecool.gladiator.model.gladiators.properties.Multiplier;
+
 public abstract class Gladiator {
 
     private final String name;
