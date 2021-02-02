@@ -57,4 +57,18 @@ public abstract class Gladiator {
      * @return DEX multiplier of the gladiator subclass
      */
     protected abstract Multiplier getDexMultiplier();
+
+    /**
+     * @return  gladiator level.
+     */
+    public int getLevel() {
+        return level;
+    }
+
+    /**
+     * Increase a gladiator level.
+     */
+    public void levelUp() {
+        level++;
+    }
 }
