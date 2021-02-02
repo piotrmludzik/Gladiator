@@ -1,5 +1,6 @@
 package com.codecool.gladiator.util;
 
+import java.util.List;
 import java.util.Random;
 
 public class Randomizer {
@@ -17,16 +18,15 @@ public class Randomizer {
     }
 
     /**
-     * Choose a random element from an array of strings.
-     * @param possibilities array of strings to choose from
+     * Choose a random element from a list of strings.
+     * @param possibilities List of strings to choose from
      * @return              the chosen string
      */
-    public static String chooseOne(String[] possibilities) {
-        if (possibilities == null || possibilities.length < 1) {
-            throw new IllegalArgumentException("Possibilities should be a non-empty array of strings.");
-        }
+    public static String chooseOne(List<String> possibilities) {
+        if (possibilities == null || possibilities.isEmpty())
+            throw new IllegalArgumentException("Possibilities should be a non-empty list of strings.");
 
-        return possibilities[RANDOM.nextInt(possibilities.length)];
+        return possibilities.get(RANDOM.nextInt(possibilities.size()));
     }
 
     /**

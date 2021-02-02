@@ -28,7 +28,7 @@ public class GladiatorFactory {
      * @return gladiator name
      */
     private String getRandomName() {
-        return Randomizer.chooseOne(names.toArray(new String[0]));
+        return Randomizer.chooseOne(names);
     }
 
     /**
