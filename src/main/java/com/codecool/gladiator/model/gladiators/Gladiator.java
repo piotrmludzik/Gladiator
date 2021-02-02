@@ -113,4 +113,12 @@ public abstract class Gladiator {
      * @return DEX multiplier of the gladiator subclass
      */
     protected abstract Multiplier getDexMultiplier();
+
+    /**
+     * @return true if a gladiator should die,
+     *         otherwise false
+     */
+    public boolean shoudDie() {
+        return health <= 0;
+    }
 }
