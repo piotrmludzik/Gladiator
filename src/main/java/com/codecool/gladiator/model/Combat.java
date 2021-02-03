@@ -76,7 +76,7 @@ public class Combat {
     }
 
     private int getChanceOfAttackerHit() {
-        int dexComparison = attacker.getDex() - defender.getDex();
+        int dexComparison = (int) Math.round(attacker.getDex() - defender.getDex());
 
         if (dexComparison <= 10) return 10;
         if (dexComparison >= 100) return 100;
