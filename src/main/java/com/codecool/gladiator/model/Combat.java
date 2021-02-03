@@ -75,14 +75,25 @@ public class Combat {
         defender = gladiatorToSwap;
     }
 
+    /**
+     * @return the first gladiator: attacker
+     */
     public Gladiator getAttacker() {
         return attacker;
     }
 
+    /**
+     * @return the second gladiator: defender
+     */
     public Gladiator getDefender() {
         return defender;
     }
 
+    /**
+     * Returns a combat log.
+     * @param separator that separate each combat step information
+     * @return          a string of combat log
+     */
     public String getCombatLog(String separator) {
         return String.join(separator, combatLog);
     }
