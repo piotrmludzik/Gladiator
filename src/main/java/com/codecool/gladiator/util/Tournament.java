@@ -5,21 +5,18 @@ import com.codecool.gladiator.model.Contestants;
 import java.util.List;
 
 /**
- * Custom implementation of the binary tree data structure
+ * Custom implementation of the binary tree data structure.
  */
 public class Tournament {
 
-    private Contestants contestants;
-    private Tournament leftBranch;
-    private Tournament rightBranch;
-    private int size;
-    /**
-     * A boolean value used for navigating between left and right branches when adding new values
-     */
-    private boolean left = true;
+    private Contestants contestants;  // must be null if there are further branches
+    private Tournament leftBranch;    // must be null if there are contestants
+    private Tournament rightBranch;   // must be null if there are contestants
+    private int size;                 // the size of the tree
+    private boolean left = true;      // value used for navigating between left and right branches
 
     /**
-     * Constructor with initial value
+     * Constructor with initial value.
      *
      * @param contestants the initial value to be added to the tree
      */
@@ -28,7 +25,7 @@ public class Tournament {
     }
 
     /**
-     * Constructor with initial list of values
+     * Constructor with initial list of values.
      *
      * @param values the list of values to be added to the tree
      */
@@ -37,7 +34,7 @@ public class Tournament {
     }
 
     /**
-     * Getter for the value (must be null if there are further branches)
+     * Getter for the value (null if there are further branches).
      *
      * @return the value
      */
@@ -46,7 +43,7 @@ public class Tournament {
     }
 
     /**
-     * Getter for the left branch
+     * Getter for the left branch (null if there are contestants).
      *
      * @return the left branch
      */
@@ -55,7 +52,7 @@ public class Tournament {
     }
 
     /**
-     * Getter for the right branch
+     * Getter for the right branch (null if there are contestants).
      *
      * @return the right branch
      */
@@ -64,16 +61,19 @@ public class Tournament {
     }
 
     /**
-     * Setter for current contestants
+     * Setter for current contestants.
      *
      * @param contestants contestants of the Tournament
      */
     public void setContestants(Contestants contestants) {
+        if (leftBranch != null || rightBranch != null)
+            throw new IllegalStateException("There should be no branches to set up the contestants.");
+
         this.contestants = contestants;
     }
 
     /**
-     * Returns the number of values put in the tree
+     * Returns the number of values put in the tree.
      *
      * @return the size of the tree
      */
@@ -82,16 +82,16 @@ public class Tournament {
     }
 
     /**
-     * Adds a new value to the tree
+     * Adds a new value to the tree.
      *
-     * @param value the value to be added to the tree
+     * @param value the value to be added to the tree.
      */
     public void add(Contestants value) {
         // Todo
     }
 
     /**
-     * Adds multiple values to the tree
+     * Adds multiple values to the tree.
      *
      * @param values the list of values to be added to the tree
      */
