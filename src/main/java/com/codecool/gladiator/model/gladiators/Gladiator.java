@@ -27,7 +27,7 @@ public abstract class Gladiator {
         this.baseSp = baseSp;
         this.baseDex = baseDex;
 
-        health = getMaxAvalibleHP();
+        health = getMaxAvailableHP();
     }
 
     /**
@@ -77,27 +77,27 @@ public abstract class Gladiator {
     }
 
     /**
-     * @return maximum avalible HP value
+     * @return maximum available HP value
      */
-    public double getMaxAvalibleHP() {
-        return getMaxAvaliblePropertyValue(baseHp, getHpMultiplier().getValue());
+    public double getMaxAvailableHP() {
+        return getMaxAvailablePropertyValue(baseHp, getHpMultiplier().getValue());
     }
 
     /**
-     * @return maximum avalible SP value
+     * @return maximum available SP value
      */
-    public double getMaxAvalibleSP() {
-        return getMaxAvaliblePropertyValue(baseSp, getSpMultiplier().getValue());
+    public double getMaxAvailableSP() {
+        return getMaxAvailablePropertyValue(baseSp, getSpMultiplier().getValue());
     }
 
     /**
-     * @return maximum avalible DEX value
+     * @return maximum available DEX value
      */
-    public double getMaxAvalibleDEX() {
-        return getMaxAvaliblePropertyValue(baseDex, getDexMultiplier().getValue());
+    public double getMaxAvailableDEX() {
+        return getMaxAvailablePropertyValue(baseDex, getDexMultiplier().getValue());
     }
 
-    private double getMaxAvaliblePropertyValue(int baseValue, double valueMultiplier) {
+    private double getMaxAvailablePropertyValue(int baseValue, double valueMultiplier) {
         return baseValue * valueMultiplier * level;
     }
 
@@ -120,7 +120,7 @@ public abstract class Gladiator {
      * @return true if a gladiator should die,
      *         otherwise false
      */
-    public boolean shoudDie() {
+    public boolean isDead() {
         return health <= 0;
     }
 }
