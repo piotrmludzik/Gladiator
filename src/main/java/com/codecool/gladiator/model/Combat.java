@@ -47,7 +47,7 @@ public class Combat {
             return null;  // both are missing
         }
 
-        while (shouldFightAgain()) {
+        do {  // fight!
             if (isChanceOfAttackerHit()) {
                 doAttackerHit();
                 setLog("hit");
@@ -55,12 +55,12 @@ public class Combat {
                 setLog("mishit");
             }
 
-            swapGladiators();
-        }
-
+            if (!defender.isDead())
+                swapGladiators();
+        } while (defender.isDead());
 
         setLog("win");
-        return defender.isDead() ? attacker : defender;
+        return attacker;
     }
 
     private boolean isMissingGladiator() {
@@ -69,10 +69,6 @@ public class Combat {
 
     private boolean isGladiator(Gladiator gladiator) {
         return gladiator != null;
-    }
-
-    private boolean shouldFightAgain() {
-        return !(attacker.isDead() || defender.isDead());
     }
 
     private boolean isChanceOfAttackerHit() {
@@ -140,5 +136,4 @@ public class Combat {
     public String getCombatLog(String separator) {
         return String.join(separator, combatLog);
     }
-
 }
