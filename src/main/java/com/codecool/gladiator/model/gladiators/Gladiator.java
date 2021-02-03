@@ -27,7 +27,7 @@ public abstract class Gladiator {
         this.baseDex = baseDex;
         this.level = level;
 
-        currentHp = getMaxAvailableHP();
+        currentHp = getHp();
     }
 
     /**
@@ -48,19 +48,29 @@ public abstract class Gladiator {
         return String.format("%s %s", this.getClass().getSimpleName(), name);
     }
 
-    public int getHp() {
-        // TODO
-        return 0;
+    /**
+     * @return maximum available Helath value
+     */
+    public double getHp() {
+        return getGladiatorPropertyValue(baseHp, getHpMultiplier().getValue());
     }
 
-    public int getSp() {
-        // TODO
-        return 0;
+    /**
+     * @return maximum available Strength value
+     */
+    public double getSp() {
+            return getGladiatorPropertyValue(baseSp, getSpMultiplier().getValue());
     }
 
-    public int getDex() {
-        // TODO
-        return 0;
+    /**
+     * @return maximum available Dexterity value
+     */
+    public double getDex() {
+        return getGladiatorPropertyValue(baseDex, getDexMultiplier().getValue());
+    }
+
+    private double getGladiatorPropertyValue(int baseValue, double multiplier) {
+        return baseValue * multiplier * level;
     }
 
     /**
@@ -71,13 +81,6 @@ public abstract class Gladiator {
     }
 
     /**
-     * @param currentHp a gladiator health points
-     */
-    public void setCurrentHp(double currentHp) {
-        this.currentHp = currentHp;
-    }
-
-    /**
      * Reduce gladiator health.
      * @param damage value to reduce current health
      */
@@ -85,8 +88,11 @@ public abstract class Gladiator {
         currentHp = currentHp - damage;
     }
 
+    /**
+     * Heal up the gladiator to maximum available health.
+     */
     public void healUp() {
-        // TODO
+        currentHp = getHp();
     }
 
     /**
@@ -109,31 +115,6 @@ public abstract class Gladiator {
      */
     public boolean isDead() {
         return currentHp <= 0;
-    }
-
-    /**
-     * @return maximum available HP value
-     */
-    public double getMaxAvailableHP() {
-        return getMaxAvailablePropertyValue(baseHp, getHpMultiplier().getValue());
-    }
-
-    /**
-     * @return maximum available SP value
-     */
-    public double getMaxAvailableSP() {
-        return getMaxAvailablePropertyValue(baseSp, getSpMultiplier().getValue());
-    }
-
-    /**
-     * @return maximum available DEX value
-     */
-    public double getMaxAvailableDEX() {
-        return getMaxAvailablePropertyValue(baseDex, getDexMultiplier().getValue());
-    }
-
-    private double getMaxAvailablePropertyValue(int baseValue, double valueMultiplier) {
-        return baseValue * valueMultiplier * level;
     }
 
     /**
