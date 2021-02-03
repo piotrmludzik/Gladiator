@@ -49,7 +49,7 @@ public abstract class Gladiator {
     }
 
     /**
-     * @return maximum available Helath value
+     * @return maximum available Health value
      */
     public double getHp() {
         return getGladiatorPropertyValue(baseHp, getHpMultiplier().getValue());
