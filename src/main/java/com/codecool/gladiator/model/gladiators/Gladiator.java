@@ -77,8 +77,12 @@ public abstract class Gladiator {
         this.currentHp = currentHp;
     }
 
-    public void decreaseHpBy() {
-        // TODO
+    /**
+     * Reduce gladiator health.
+     * @param damage value to reduce current health
+     */
+    public void decreaseHp(double damage) {
+        currentHp = currentHp - damage;
     }
 
     public void healUp() {

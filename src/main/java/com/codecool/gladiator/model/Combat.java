@@ -83,7 +83,12 @@ public class Combat {
     }
 
     private void doAttackerHit() {
-        // TODO
+        double damage  = attacker.getSp() * randomStrengthFactor();
+        defender.decreaseHp(damage);
+    }
+
+    private double randomStrengthFactor() {
+        return (double) Randomizer.integerFromRange(1, 6) / 10;
     }
 
     private void swapGladiators() {
