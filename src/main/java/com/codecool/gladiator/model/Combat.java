@@ -1,6 +1,7 @@
 package com.codecool.gladiator.model;
 
 import com.codecool.gladiator.model.gladiators.Gladiator;
+import com.codecool.gladiator.util.Randomizer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,15 +11,25 @@ import java.util.List;
  */
 public class Combat {
 
-    private final Gladiator gladiator1;
-    private final Gladiator gladiator2;
+    private Gladiator attacker;
+    private Gladiator defender;
 
     private final List<String> combatLog;
 
     public Combat(Contestants contestants) {
-        this.gladiator1 = contestants.gladiator1;
-        this.gladiator2 = contestants.gladiator2;
+        if (isFiftyFifty()) {
+            attacker = contestants.gladiator1;
+            defender = contestants.gladiator2;
+        } else {
+            attacker = contestants.gladiator2;
+            defender = contestants.gladiator1;
+        }
+
         this.combatLog = new ArrayList<>();
+    }
+
+    private boolean isFiftyFifty() {
+        return Randomizer.eventWithChance(50);
     }
 
     /**
@@ -29,16 +40,30 @@ public class Combat {
      * @return winner of combat
      */
     public Gladiator simulate() {
-        // Todo
-        return gladiator1;
+        while (shouldFightAgain()) {
+
+            swapGladiators();
+        }
+
+        return attacker;
     }
 
-    public Gladiator getGladiator1() {
-        return gladiator1;
+    private boolean shouldFightAgain() {
+        return !(attacker.isDead() || defender.isDead());
     }
 
-    public Gladiator getGladiator2() {
-        return gladiator2;
+    private void swapGladiators() {
+        Gladiator gladiatorToSwap = attacker;
+        attacker = defender;
+        defender = gladiatorToSwap;
+    }
+
+    public Gladiator getAttacker() {
+        return attacker;
+    }
+
+    public Gladiator getDefender() {
+        return defender;
     }
 
     public String getCombatLog(String separator) {

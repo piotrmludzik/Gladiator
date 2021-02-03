@@ -11,5 +11,4 @@ public class Contestants {
         this.gladiator1 = gladiator1;
         this.gladiator2 = gladiator2;
     }
-
 }
