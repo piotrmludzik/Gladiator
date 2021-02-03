@@ -40,12 +40,29 @@ public class Combat {
      * @return winner of combat
      */
     public Gladiator simulate() {
+        if (isMissingGladiator()) {
+            if (isGladiator(attacker))
+                return attacker;
+            if (isGladiator(defender))
+                return defender;
+
+            return null;  // both are missing
+        }
+
         while (shouldFightAgain()) {
 
             swapGladiators();
         }
 
         return attacker;
+    }
+
+    private boolean isMissingGladiator() {
+        return !(isGladiator(attacker) && isGladiator(defender));
+    }
+
+    private boolean isGladiator(Gladiator gladiator) {
+        return gladiator != null;
     }
 
     private boolean shouldFightAgain() {
