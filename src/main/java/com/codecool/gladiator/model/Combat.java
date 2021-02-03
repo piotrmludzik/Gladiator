@@ -54,7 +54,7 @@ public class Combat {
             swapGladiators();
         }
 
-        return attacker;
+        return defender.isDead() ? attacker : defender;
     }
 
     private boolean isMissingGladiator() {
