@@ -39,12 +39,15 @@ public class Randomizer {
     }
 
     /**
-     * Determine whether an event has occured given the chance for it.
-     * @param chance the chance of the event happening in percents.
+     * Determine whether an event has occurred given the chance for it.
+     * @param chance the chance of the event happening in percents (0-100).
      * @return       true if the event has happened.
      */
     public static boolean eventWithChance(int chance) {
-        return RANDOM.nextInt(100) < chance;
+        if (chance < 0 || chance > 100)
+            throw new IllegalArgumentException("A chance value should be in a range from 0 to 100 percent.");
+
+        return RANDOM.nextInt(101) < chance;
     }
 
     private Randomizer() {
