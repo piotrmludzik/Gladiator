@@ -48,12 +48,18 @@ public class Combat {
         }
 
         while (shouldFightAgain()) {
-            if (isChanceOfAttackerHit())
+            if (isChanceOfAttackerHit()) {
                 doAttackerHit();
+                setLog("hit");
+            } else {
+                setLog("mishit");
+            }
 
             swapGladiators();
         }
 
+
+        setLog("win");
         return defender.isDead() ? attacker : defender;
     }
 
@@ -111,6 +117,21 @@ public class Combat {
         return defender;
     }
 
+    private void setLog(String typeOfLog) {
+        String attackerName = attacker.getFullName();
+        String defenderName = defender.getFullName();
+
+        switch (typeOfLog) {
+            case "hit":
+                combatLog.add(attackerName + " deals " + defenderName + " damage.");
+                break;
+            case "mishit":
+                combatLog.add(attackerName + " missed.");
+                break;
+            case "win":
+                combatLog.add(defenderName + " has died, " + attackerName + " wins!");
+        }
+    }
     /**
      * Returns a combat log.
      * @param separator that separate each combat step information
