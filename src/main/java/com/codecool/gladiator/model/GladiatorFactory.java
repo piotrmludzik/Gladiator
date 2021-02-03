@@ -23,22 +23,46 @@ public class GladiatorFactory {
     }
 
     /**
-     * Picks a random name from the file given in the constructor
-     *
-     * @return gladiator name
-     */
-    private String getRandomName() {
-        return Randomizer.chooseOne(names);
-    }
-
-    /**
      * Instantiates a new gladiator with random name and type.
      * Creating an Archer, an Assassin, or a Brutal has the same chance,
      * while the chance of creating a Swordsman is the double of the chance of creating an Archer.
      * @return new Gladiator
      */
     public Gladiator generateRandomGladiator() {
-        // Todo
-        return new Brutal(getRandomName(), 50, 50, 50, 1);
+        String name = getRandomName();
+        int hp = getBaseValue();
+        int sp = getBaseValue();
+        int dex = getBaseValue();
+        int lvl = getRandomLevel();
+
+        if (shouldCreateSwordsman())
+            return new Swordsman(name, hp, sp, dex, lvl);
+
+        switch (Randomizer.integer(3)) {
+            case 0:
+                return new Archer(name, hp, sp, dex, lvl);
+            case 1:
+                return new Assassin(name, hp, sp, dex, lvl);
+            case 2:
+                return new Brutal(name, hp, sp, dex, lvl);
+        }
+
+        throw new RuntimeException("Couldn't create new gladiator!");
+    }
+
+    private String getRandomName() {
+        return Randomizer.chooseOne(names);
+    }
+
+    private int getBaseValue() {
+        return Randomizer.integerFromRange(25, 101);
+    }
+
+    private int getRandomLevel() {
+        return Randomizer.integerFromRange(1, 6);
+    }
+
+    private boolean shouldCreateSwordsman() {
+        return Randomizer.eventWithChance(50);  // 50% of chance
     }
 }

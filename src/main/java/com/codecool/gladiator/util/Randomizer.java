@@ -8,6 +8,15 @@ public class Randomizer {
     private static final Random RANDOM = new Random();
 
     /**
+     * Generate a random integer from a 0 (inclusive) to a given upper limit.
+     * @param upper upper exclusive limit of the range
+     * @return      a random number between a 0 and an upper bound
+     */
+    public static int integer(int upper) {
+        return RANDOM.nextInt(upper);
+    }
+
+    /**
      * Generate a random integer from a given range.
      * @param lower lower inclusive limit of the range
      * @param upper upper exclusive limit of the range
