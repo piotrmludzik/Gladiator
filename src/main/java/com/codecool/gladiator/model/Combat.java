@@ -41,15 +41,15 @@ public class Combat {
      */
     public Gladiator simulate() {
         if (isMissingGladiator()) {
-            if (isGladiator(attacker))
-                return attacker;
-            if (isGladiator(defender))
-                return defender;
+            if (isGladiator(attacker)) return attacker;
+            if (isGladiator(defender)) return defender;
 
             return null;  // both are missing
         }
 
         while (shouldFightAgain()) {
+            if (isChanceOfAttackerHit())
+                doAttackerHit();
 
             swapGladiators();
         }
@@ -67,6 +67,23 @@ public class Combat {
 
     private boolean shouldFightAgain() {
         return !(attacker.isDead() || defender.isDead());
+    }
+
+    private boolean isChanceOfAttackerHit() {
+        return Randomizer.eventWithChance(getChanceOfAttackerHit());
+    }
+
+    private int getChanceOfAttackerHit() {
+        int dexComparison = attacker.getDex() - defender.getDex();
+
+        if (dexComparison <= 10) return 10;
+        if (dexComparison >= 100) return 100;
+
+        return dexComparison;
+    }
+
+    private void doAttackerHit() {
+        // TODO
     }
 
     private void swapGladiators() {
