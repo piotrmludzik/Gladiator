@@ -59,6 +59,7 @@ public class Combat {
                 swapGladiators();
         } while (defender.isDead());
 
+        cleanUpDeadDefender();
         setLog("win");
         return attacker;
     }
@@ -99,6 +100,10 @@ public class Combat {
         defender = gladiatorToSwap;
     }
 
+    private void cleanUpDeadDefender() {
+        defender = null;
+    }
+
     /**
      * @return the first gladiator: attacker
      */
@@ -128,6 +133,7 @@ public class Combat {
                 combatLog.add(defenderName + " has died, " + attackerName + " wins!");
         }
     }
+
     /**
      * Returns a combat log.
      * @param separator that separate each combat step information
