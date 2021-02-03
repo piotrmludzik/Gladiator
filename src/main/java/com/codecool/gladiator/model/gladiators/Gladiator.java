@@ -5,11 +5,11 @@ import com.codecool.gladiator.model.gladiators.properties.Multiplier;
 public abstract class Gladiator {
 
     private final String name;
-    private int level;
-    private double health;
     private final int baseHp;
     private final int baseSp;
     private final int baseDex;
+    private double currentHp;
+    private int level;
 
     /**
      * Constructor for Gladiators
@@ -22,12 +22,12 @@ public abstract class Gladiator {
      */
     public Gladiator(String name, int baseHp, int baseSp, int baseDex, int level) {
         this.name = name;
-        this.level = level;
         this.baseHp = baseHp;
         this.baseSp = baseSp;
         this.baseDex = baseDex;
+        this.level = level;
 
-        health = getMaxAvailableHP();
+        currentHp = getMaxAvailableHP();
     }
 
     /**
@@ -48,6 +48,43 @@ public abstract class Gladiator {
         return String.format("%s %s", this.getClass().getSimpleName(), name);
     }
 
+    public int getHp() {
+        // TODO
+        return 0;
+    }
+
+    public int getSp() {
+        // TODO
+        return 0;
+    }
+
+    public int getDex() {
+        // TODO
+        return 0;
+    }
+
+    /**
+     * @return a gladiator health points
+     */
+    public double getCurrentHp() {
+        return currentHp;
+    }
+
+    /**
+     * @param currentHp a gladiator health points
+     */
+    public void setCurrentHp(double currentHp) {
+        this.currentHp = currentHp;
+    }
+
+    public void decreaseHpBy() {
+        // TODO
+    }
+
+    public void healUp() {
+        // TODO
+    }
+
     /**
      * @return  gladiator level
      */
@@ -63,17 +100,11 @@ public abstract class Gladiator {
     }
 
     /**
-     * @return a gladiator health points
+     * @return true if a gladiator should die,
+     *         otherwise false
      */
-    public double getHealth() {
-        return health;
-    }
-
-    /**
-     * @param health a gladiator health points
-     */
-    public void setHealth(double health) {
-        this.health = health;
+    public boolean isDead() {
+        return currentHp <= 0;
     }
 
     /**
@@ -115,12 +146,4 @@ public abstract class Gladiator {
      * @return DEX multiplier of the gladiator subclass
      */
     protected abstract Multiplier getDexMultiplier();
-
-    /**
-     * @return true if a gladiator should die,
-     *         otherwise false
-     */
-    public boolean isDead() {
-        return health <= 0;
-    }
 }
