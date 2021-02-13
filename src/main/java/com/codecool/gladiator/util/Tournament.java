@@ -84,20 +84,27 @@ public class Tournament {
     /**
      * Adds a new value to the tree.
      *
-     * @param value the value to be added to the tree.
+     * @param contestants the value to be added to the tree.
      */
-    public void add(Contestants value) {
-        // Todo
+    public void add(Contestants contestants) {
+        if (this.contestants == null) {
+            this.contestants = contestants;
+            leftBranch = null;
+            rightBranch = null;
+        } else {
+            leftBranch = new Tournament(this.contestants);
+            rightBranch = new Tournament(contestants);
+            this.contestants = null;
+        }
     }
 
     /**
      * Adds multiple values to the tree.
      *
-     * @param values the list of values to be added to the tree
+     * @param listOfContestants the list of values to be added to the tree
      */
-    public void addAll(List<Contestants> values) {
-        for (Contestants value : values) {
-            add(value);
-        }
+    public void addAll(List<Contestants> listOfContestants) {
+        for (Contestants contestants : listOfContestants)
+            add(contestants);
     }
 }
