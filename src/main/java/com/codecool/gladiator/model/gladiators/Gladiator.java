@@ -48,6 +48,11 @@ public abstract class Gladiator {
         return String.format("%s %s", this.getClass().getSimpleName(), name);
     }
 
+    @Override
+    public String toString() {
+        return getFullName();
+    }
+
     /**
      * @return maximum available Health value
      */
