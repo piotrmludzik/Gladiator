@@ -87,20 +87,6 @@ public class Colosseum {
         view.display("\n\"Ave Imperator, morituri te salutant!\"");
     }
 
-    private void announceCombat(Gladiator gladiator1, Gladiator gladiator2) {
-        view.display(String.format("\nDuel %s versus %s:", gladiator1.getName(), gladiator2.getName()));
-        view.display(String.format(" - %s", gladiator1));
-        view.display(String.format(" - %s", gladiator2));
-    }
-
-    private void displayCombatLog(Combat combat) {
-        view.display(String.format(" - %s", combat.getCombatLog(", ")));
-    }
-
-    private void announceWinnerAndLoser(Gladiator winner, Gladiator loser) {
-        view.display(String.format("%s has died, %s wins!", loser.getFullName(), winner.getFullName()));
-    }
-
     private void announceChampion(Gladiator champion) {
         if (champion != null) {
             view.display(String.format("\nThe Champion of the Tournament is %s!", champion.getFullName()));
@@ -109,4 +95,17 @@ public class Colosseum {
         }
     }
 
+    private void announceCombat(Gladiator gladiator1, Gladiator gladiator2) {
+        view.display(String.format("\nDuel %s versus %s:", gladiator1.getName(), gladiator2.getName()));
+        view.display(String.format(" - %s", gladiator1));
+        view.display(String.format(" - %s", gladiator2));
+    }
+
+    private void announceWinnerAndLoser(Gladiator winner, Gladiator loser) {
+        view.display(String.format("%s has died, %s wins!", loser.getFullName(), winner.getFullName()));
+    }
+
+    private void displayCombatLog(Combat combat) {
+        view.display(String.format(" - %s", combat.getCombatLog(", ")));
+    }
 }
