@@ -4,6 +4,7 @@ import com.codecool.gladiator.model.Combat;
 import com.codecool.gladiator.model.Contestants;
 import com.codecool.gladiator.model.GladiatorFactory;
 import com.codecool.gladiator.model.gladiators.*;
+import com.codecool.gladiator.util.Randomizer;
 import com.codecool.gladiator.util.Tournament;
 import com.codecool.gladiator.view.Viewable;
 
@@ -51,8 +52,19 @@ public class Colosseum {
     }
 
     private List<Contestants> splitGladiatorsIntoPairs(List<Gladiator> gladiators) {
-        // Todo
-        return new LinkedList<>();
+        List<Contestants> pairs = new ArrayList<>();
+
+        int pairsNumber = gladiators.size() / 2;
+        for (int n=1; n <= pairsNumber; n++) {
+            Gladiator firstGladiator = Randomizer.chooseOne(gladiators);
+            gladiators.remove(firstGladiator);
+            Gladiator secondGladiator = Randomizer.chooseOne(gladiators);
+            gladiators.remove(secondGladiator);
+            pairs.add(new Contestants(firstGladiator, secondGladiator));
+        }
+
+        announcePairs(pairs);
+        return pairs;
     }
 
     private Gladiator getChampion(Tournament tournament) {
@@ -88,6 +100,12 @@ public class Colosseum {
             view.display(String.format(" - %s", gladiator));
         }
         view.display("\n\"Ave Imperator, morituri te salutant!\"");
+    }
+
+    private void announcePairs(List<Contestants> pairs) {
+        System.out.println("\nThe warriors were assigned to the following pairs:");
+        for (int n=0; n < pairs.size(); n++)
+            System.out.println(((n + 1) + ": " + pairs.get(n)));
     }
 
     private void announceChampion(Gladiator champion) {
