@@ -27,13 +27,13 @@ public class Randomizer {
     }
 
     /**
-     * Choose a random element from a list of strings.
-     * @param possibilities List of strings to choose from
-     * @return              the chosen string
+     * Choose a random element from a list of objects.
+     * @param possibilities List of objects to choose from
+     * @return              the chosen object
      */
-    public static String chooseOne(List<String> possibilities) {
+    public static <T> T chooseOne(List<T> possibilities) {
         if (possibilities == null || possibilities.isEmpty())
-            throw new IllegalArgumentException("Possibilities should be a non-empty list of strings.");
+            throw new IllegalArgumentException("Possibilities should be a non-empty list of objects.");
 
         return possibilities.get(RANDOM.nextInt(possibilities.size()));
     }
