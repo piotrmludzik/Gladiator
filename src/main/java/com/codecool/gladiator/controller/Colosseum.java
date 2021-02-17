@@ -10,6 +10,7 @@ import com.codecool.gladiator.view.Viewable;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Colosseum {
 
@@ -42,7 +43,9 @@ public class Colosseum {
 
     private List<Gladiator> generateGladiators(int numberOfGladiators) {
         List<Gladiator> gladiators = new ArrayList<>();
-        // Todo
+        for (int n=0; n < numberOfGladiators; n++)
+            gladiators.add(gladiatorFactory.generateRandomGladiator());
+
         introduceGladiators(gladiators);
         return gladiators;
     }
