@@ -11,4 +11,9 @@ public class Contestants {
         this.gladiator1 = gladiator1;
         this.gladiator2 = gladiator2;
     }
+
+    @Override
+    public String toString() {
+        return gladiator1 + " vs " + gladiator2;
+    }
 }
