@@ -180,6 +180,8 @@ public class Colosseum {
                     gladiator.getDex(),
                     gladiator.getLevel()));
         }
+
+        view.display("\nBegin!");
     }
 
     private void announceWinnerAndLoser(Combat combat) {
@@ -187,6 +189,6 @@ public class Colosseum {
     }
 
     private void displayCombatLog(Combat combat) {
-        view.display(String.format(" - %s", combat.getCombatLog(", ")));
+        view.display(String.format(" - %s", combat.getCombatLog("\n - ")));
     }
 }

@@ -14,7 +14,8 @@ public class Combat {
     private Gladiator gladiator1;
     private Gladiator gladiator2;
 
-    private final List<String> combatLog;
+    private final List<String> combatLog = new ArrayList<>();
+    double actualDamage = 0;
 
     public Combat(Contestants contestants) {
         if (isFiftyFifty()) {
@@ -24,8 +25,6 @@ public class Combat {
             gladiator1 = contestants.gladiator2;
             gladiator2 = contestants.gladiator1;
         }
-
-        this.combatLog = new ArrayList<>();
     }
 
     private boolean isFiftyFifty() {
@@ -47,6 +46,7 @@ public class Combat {
             return null;  // both are missing
         }
 
+
         do {  // fight!
             if (isChanceOfAttackerHit()) {
                 doAttackerHit();
@@ -59,7 +59,6 @@ public class Combat {
                 swapGladiators();
         } while (gladiator2.isDead());
 
-        setLog("win");
         return gladiator1;
     }
 
@@ -85,8 +84,8 @@ public class Combat {
     }
 
     private void doAttackerHit() {
-        double damage  = gladiator1.getSp() * randomStrengthFactor();
-        gladiator2.decreaseHp(damage);
+        actualDamage = gladiator1.getSp() * randomStrengthFactor();
+        gladiator2.decreaseHp(actualDamage);
     }
 
     private double randomStrengthFactor() {
@@ -121,18 +120,17 @@ public class Combat {
     }
 
     private void setLog(String typeOfLog) {
-        String attackerName = gladiator1.getFullName();
-        String defenderName = gladiator2.getFullName();
+        var attackerName = gladiator1.getName();
 
         switch (typeOfLog) {
             case "hit":
-                combatLog.add(attackerName + " deals " + defenderName + " damage.");
+                combatLog.add(String.format("%s deals %s damage", attackerName, actualDamage));
                 break;
             case "mishit":
-                combatLog.add(attackerName + " missed.");
+                combatLog.add(String.format("%s missed", attackerName));
                 break;
-            case "win":
-                combatLog.add(defenderName + " has died, " + attackerName + " wins!");
+            default:
+                throw new IllegalArgumentException("The typeOfLog argument missing.");
         }
     }
 
