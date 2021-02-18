@@ -76,11 +76,17 @@ public class Colosseum {
             nextStageGladiators = runStage(stage);
         }
 
-        return nextStageGladiators.get(0);
+        return getWinner(nextStageGladiators);
     }
 
     private boolean shouldFightAgain(List<Gladiator> gladiators) {
         return gladiators.size() != 1;
+    }
+
+    private Gladiator getWinner(List<Gladiator> nextStageGladiators) {
+        var winner = nextStageGladiators.get(0);  // there should be only one on the list
+        winner.levelUp();
+        return winner;
     }
 
     private List<Gladiator> runStage(Tournament stage) {
