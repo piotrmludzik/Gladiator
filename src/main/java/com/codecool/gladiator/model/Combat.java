@@ -33,18 +33,12 @@ public class Combat {
 
     /**
      * Simulates the combat and returns the winner.
-     * If one of the opponents is null, the winner is the one that is not null
-     * If both of the opponents are null, the return value is null
      *
-     * @return winner of combat
+     * @throws IllegalStateException if one of the opponents is null
      */
-    public Gladiator simulate() {
-        if (isMissingGladiator()) {
-            if (isGladiator(gladiator1)) return gladiator1;
-            if (isGladiator(gladiator2)) return gladiator2;
-
-            return null;  // both are missing
-        }
+    public void simulate() {
+        if (isMissingGladiator())
+            throw new IllegalStateException("One of the gladiators is missing.");
 
         boolean isDefenderLife;
         do {  // fight!
@@ -59,8 +53,6 @@ public class Combat {
             if (isDefenderLife)
                 swapGladiators();
         } while (isDefenderLife);
-
-        return gladiator1;
     }
 
     private boolean isMissingGladiator() {
