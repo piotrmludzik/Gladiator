@@ -20,6 +20,7 @@ public class Colosseum {
     private final Viewable view;
     private final GladiatorFactory gladiatorFactory;
     private int stages = 2;
+    private int stageNumber = 1;
     private int combatNumber = 1;
 
     public Colosseum(Viewable view, GladiatorFactory gladiatorFactory) {
@@ -34,6 +35,7 @@ public class Colosseum {
         var numberOfGladiators = (int) Math.pow(2, stages);
         var gladiators = generateGladiators(numberOfGladiators);
         var contestants = splitGladiatorsIntoPairs(gladiators);
+        announcePairs(contestants);
         var tournamentTree = new Tournament(contestants);
         var champion = getChampion(tournamentTree);
         announceChampion(champion);
@@ -62,8 +64,6 @@ public class Colosseum {
             gladiators.remove(secondGladiator);
             pairs.add(new Contestants(firstGladiator, secondGladiator));
         }
-
-        announcePairs(pairs);
         return pairs;
     }
 
@@ -73,8 +73,11 @@ public class Colosseum {
 
         var nextStageGladiators = runStage(stage);
         while (shouldFightAgain(nextStageGladiators)) {
-            stage = new Tournament(splitGladiatorsIntoPairs(nextStageGladiators));
-            nextStageGladiators = runStage(stage);
+            stageNumber++;
+            var pairs = splitGladiatorsIntoPairs(nextStageGladiators);
+            announcePairs(pairs);
+
+            nextStageGladiators = runStage(new Tournament(pairs));
             increaseLevelOfWinners(nextStageGladiators);
         }
 
@@ -154,7 +157,7 @@ public class Colosseum {
     }
 
     private void announcePairs(List<Contestants> pairs) {
-        System.out.println("\nThe warriors were assigned to the following pairs:");
+        view.display(String.format("\nPrepare to stage %s...\nThe warriors were assigned to the following pairs:", stageNumber));
         for (int n=0; n < pairs.size(); n++)
             System.out.println(((n + 1) + ": " + pairs.get(n)));
     }
