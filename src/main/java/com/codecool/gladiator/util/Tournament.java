@@ -87,18 +87,18 @@ public class Tournament {
      * @param contestants the value to be added to the tree.
      */
     public void add(Contestants contestants) {
-        if (isContestants()) {  // has no branches
-            if (isEmpty()) {
+        if (hasNoBranches())
+            if (isEmpty())
                 setNewContestants(contestants);
-            } else  // has value
+            else  // has contestants
                 setNewTournament(contestants);
-        } else
+        else  // has branch/branches
             setNewBranchAndNewContestants(contestants);
 
         size++;
     }
 
-    private boolean isContestants() {
+    private boolean hasNoBranches() {
         return leftBranch == null && rightBranch == null;
     }
 
