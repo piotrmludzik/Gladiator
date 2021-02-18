@@ -19,6 +19,7 @@ public class Colosseum {
     private final Viewable view;
     private final GladiatorFactory gladiatorFactory;
     private int stages = 2;
+    private int combatNumber = 1;
 
     public Colosseum(Viewable view, GladiatorFactory gladiatorFactory) {
         this.view = view;
@@ -122,6 +123,7 @@ public class Colosseum {
         announceCombat(gladiator1, gladiator2);
 
         combat.simulate();
+        combatNumber++;
 
         displayCombatLog(combat);
         announceWinnerAndLoser(gladiator1, gladiator2);
@@ -161,7 +163,7 @@ public class Colosseum {
     }
 
     private void announceCombat(Gladiator gladiator1, Gladiator gladiator2) {
-        view.display(String.format("\nDuel %s versus %s:", gladiator1.getName(), gladiator2.getName()));
+        view.display(String.format("\nDuel #%s: %s versus %s:", combatNumber, gladiator1.getName(), gladiator2.getName()));
         view.display(String.format(" - %s", gladiator1));
         view.display(String.format(" - %s", gladiator2));
     }
