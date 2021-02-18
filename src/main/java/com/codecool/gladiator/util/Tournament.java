@@ -87,15 +87,39 @@ public class Tournament {
      * @param contestants the value to be added to the tree.
      */
     public void add(Contestants contestants) {
-        if (this.contestants == null) {
-            this.contestants = contestants;
-            leftBranch = null;
-            rightBranch = null;
-        } else {
-            leftBranch = new Tournament(this.contestants);
-            rightBranch = new Tournament(contestants);
-            this.contestants = null;
-        }
+        if (isContestants()) {  // has no branches
+            if (isEmpty()) {
+                setNewContestants(contestants);
+            } else  // has value
+                setNewTournament(contestants);
+        } else
+            setNewBranchAndNewContestants(contestants);
+
+        size++;
+    }
+
+    private boolean isContestants() {
+        return leftBranch == null && rightBranch == null;
+    }
+
+    private boolean isEmpty() {
+        return this.contestants == null;
+    }
+
+    private void setNewContestants(Contestants contestants) {
+        this.contestants = contestants;
+    }
+
+    private void setNewTournament(Contestants contestants) {
+        leftBranch = new Tournament(this.contestants);  // push the parent contestants higher
+        rightBranch = new Tournament(contestants);
+        this.contestants = null;
+    }
+
+    private void setNewBranchAndNewContestants(Contestants contestants) {
+        Tournament newBranch = left ? leftBranch : rightBranch;
+        newBranch.add(contestants);
+        left = !left;
     }
 
     /**
