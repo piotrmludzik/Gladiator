@@ -12,7 +12,6 @@ public class Tournament {
     private Contestants contestants;  // must be null if there are further branches
     private Tournament leftBranch;    // must be null if there are contestants
     private Tournament rightBranch;   // must be null if there are contestants
-    private int size;                 // the size of the tree
     private boolean left = true;      // value used for navigating between left and right branches
 
     /**
@@ -73,15 +72,6 @@ public class Tournament {
     }
 
     /**
-     * Returns the number of values put in the tree.
-     *
-     * @return the size of the tree
-     */
-    public int size() {
-        return size;
-    }
-
-    /**
      * Adds a new value to the tree.
      *
      * @param contestants the value to be added to the tree.
@@ -94,8 +84,6 @@ public class Tournament {
                 setNewTournament(contestants);
         else  // has branch/branches
             setNewBranchAndNewContestants(contestants);
-
-        size++;
     }
 
     private boolean hasNoBranches() {
