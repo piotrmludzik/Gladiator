@@ -74,9 +74,10 @@ public class Colosseum {
         while (shouldFightAgain(nextStageGladiators)) {
             stage = new Tournament(splitGladiatorsIntoPairs(nextStageGladiators));
             nextStageGladiators = runStage(stage);
+            increaseLevelOfWinners(nextStageGladiators);
         }
 
-        return getWinner(nextStageGladiators);
+        return nextStageGladiators.get(0);  // there should be only one on the list
     }
 
     private List<Gladiator> runStage(Tournament stage) {
@@ -128,10 +129,9 @@ public class Colosseum {
         return gladiators.size() != 1;
     }
 
-    private Gladiator getWinner(List<Gladiator> nextStageGladiators) {
-        var winner = nextStageGladiators.get(0);  // there should be only one on the list
-        winner.levelUp();
-        return winner;
+    private void increaseLevelOfWinners(List<Gladiator> nextStageGladiators) {
+        for (Gladiator gladiator : nextStageGladiators)
+            gladiator.levelUp();
     }
 
     public void welcome() {
