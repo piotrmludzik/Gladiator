@@ -121,7 +121,7 @@ public class Colosseum {
         Gladiator gladiator2 = combat.getDefender();
         announceCombat(gladiator1, gladiator2);
 
-        // Todo
+        combat.simulate();
 
         displayCombatLog(combat);
         announceWinnerAndLoser(gladiator1, gladiator2);
