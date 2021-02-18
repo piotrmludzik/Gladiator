@@ -46,7 +46,7 @@ public class Combat {
             return null;  // both are missing
         }
 
-
+        boolean isDefenderLife;
         do {  // fight!
             if (isChanceOfAttackerHit()) {
                 doAttackerHit();
@@ -55,9 +55,10 @@ public class Combat {
                 setLog("mishit");
             }
 
-            if (!gladiator2.isDead())
+            isDefenderLife = !gladiator2.isDead();
+            if (isDefenderLife)
                 swapGladiators();
-        } while (gladiator2.isDead());
+        } while (isDefenderLife);
 
         return gladiator1;
     }
