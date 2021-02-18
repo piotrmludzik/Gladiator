@@ -59,7 +59,6 @@ public class Combat {
                 swapGladiators();
         } while (defender.isDead());
 
-        cleanUpDeadDefender();
         setLog("win");
         return attacker;
     }
@@ -98,10 +97,6 @@ public class Combat {
         Gladiator gladiatorToSwap = attacker;
         attacker = defender;
         defender = gladiatorToSwap;
-    }
-
-    private void cleanUpDeadDefender() {
-        defender = null;
     }
 
     /**
