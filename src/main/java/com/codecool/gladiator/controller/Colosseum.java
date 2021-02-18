@@ -65,9 +65,55 @@ public class Colosseum {
         return pairs;
     }
 
-    private Gladiator getChampion(Tournament tournament) {
-        // Todo - call simulateCombat as many times as needed
-        return null;
+    private Gladiator getChampion(Tournament stage) {
+        if (stage == null)
+            throw new IllegalArgumentException("It is not possible to choose a winner when the tournament is empty.");
+
+        var nextStageGladiators = runStage(stage);
+        while (shouldFightAgain(nextStageGladiators)) {
+            stage = new Tournament(splitGladiatorsIntoPairs(nextStageGladiators));
+            nextStageGladiators = runStage(stage);
+        }
+
+        return nextStageGladiators.get(0);
+    }
+
+    private boolean shouldFightAgain(List<Gladiator> gladiators) {
+        return gladiators.size() != 1;
+    }
+
+    private List<Gladiator> runStage(Tournament stage) {
+        var victoriousGladiators = new ArrayList<Gladiator>();
+        for (Contestants contestants : getStageContestants(stage)) {
+            Gladiator winner = simulateCombat(new Combat(contestants));
+            victoriousGladiators.add(winner);
+        }
+
+        return victoriousGladiators;
+    }
+
+    private List<Contestants> getStageContestants(Tournament stage) {
+        if (hasNoBranches(stage))
+            return List.of(stage.getContestants());
+
+        var contestants = new ArrayList<Contestants>();
+        var leftBranch = stage.getLeftBranch();
+        var rightBranch = stage.getRightBranch();
+
+        if (hasBranch(leftBranch))
+            contestants.addAll(getStageContestants(stage.getLeftBranch()));
+        if (hasBranch(rightBranch))
+            contestants.addAll(getStageContestants(stage.getRightBranch()));
+
+        return contestants;
+    }
+
+    private boolean hasNoBranches(Tournament tournament) {
+        return tournament.getLeftBranch() == null && tournament.getRightBranch() == null;
+    }
+
+    private boolean hasBranch(Tournament branch) {
+        return branch != null;
     }
 
     private Gladiator simulateCombat(Combat combat) {
