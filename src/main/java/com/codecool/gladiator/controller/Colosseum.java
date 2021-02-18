@@ -9,9 +9,7 @@ import com.codecool.gladiator.util.Tournament;
 import com.codecool.gladiator.view.Viewable;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class Colosseum {
 
@@ -90,7 +88,7 @@ public class Colosseum {
 
     public void welcomeAndAskForStages() {
         welcome();
-        view.display("How many stages of the Tournament do you wish to watch? (1-10)");
+        view.display("How many stages of the Tournament do you wish to watch?");
         stages = view.getNumberBetween(MIN_TOURNAMENT_STAGES, MAX_TOURNAMENT_STAGES);
     }
 
