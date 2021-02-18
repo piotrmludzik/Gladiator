@@ -164,8 +164,6 @@ public class Colosseum {
 
     private void announceCombat(Gladiator gladiator1, Gladiator gladiator2) {
         view.display(String.format("\nDuel #%s: %s versus %s:", combatNumber, gladiator1.getName(), gladiator2.getName()));
-        view.display(String.format(" - %s", gladiator1));
-        view.display(String.format(" - %s", gladiator2));
     }
 
     private void announceWinnerAndLoser(Gladiator winner, Gladiator loser) {
