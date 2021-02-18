@@ -79,13 +79,6 @@ public abstract class Gladiator {
     }
 
     /**
-     * @return a gladiator health points
-     */
-    public double getCurrentHp() {
-        return currentHp;
-    }
-
-    /**
      * Reduce gladiator health.
      * @param damage value to reduce current health
      */
