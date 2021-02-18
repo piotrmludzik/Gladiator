@@ -95,7 +95,7 @@ public class Tournament {
     }
 
     private void setNewContestants(Contestants contestants) {
-        this.contestants = contestants;
+        setContestants(contestants);
     }
 
     private void setNewTournament(Contestants contestants) {
