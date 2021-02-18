@@ -22,7 +22,7 @@ public class ConsoleView implements Viewable {
                 try {
                     System.out.printf("Enter the number between %s and %s: ", min, max);
                     userNumber = Integer.parseInt(scanner.nextLine());
-                    break;  // valid numberic value
+                    break;  // valid numeric value
                 } catch (NumberFormatException e) {
                     System.out.println("It's not a number!");
                 }
