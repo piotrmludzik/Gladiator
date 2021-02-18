@@ -114,16 +114,14 @@ public class Colosseum {
     }
 
     private Gladiator simulateCombat(Combat combat) {
-        Gladiator gladiator1 = combat.getGladiator1();
-        Gladiator gladiator2 = combat.getGladiator2();
-        announceCombat(gladiator1, gladiator2);
+        announceCombat(combat);
 
         combat.simulate();
         combatNumber++;
 
         displayCombatLog(combat);
-        announceWinnerAndLoser(gladiator1, gladiator2);
-        return gladiator1;
+        announceWinnerAndLoser(combat);
+        return combat.getGladiator1();  // TODO: check if it's good return
     }
 
     private boolean shouldFightAgain(List<Gladiator> gladiators) {
@@ -168,24 +166,24 @@ public class Colosseum {
         }
     }
 
-    private void announceCombat(Gladiator gladiator1, Gladiator gladiator2) {
-        view.display(String.format("\nDuel #%s: %s versus %s:", combatNumber, gladiator1.getName(), gladiator2.getName()));
-        view.display(String.format(" - %s (%s HP, %s SP, %s DEX, %s LVL)",
-                gladiator1,
-                gladiator1.getHp(),
-                gladiator1.getSp(),
-                gladiator1.getDex(),
-                gladiator1.getLevel()));
-        view.display(String.format(" - %s (%s HP, %s SP, %s DEX, %s LVL)",
-                gladiator2,
-                gladiator2.getHp(),
-                gladiator2.getSp(),
-                gladiator2.getDex(),
-                gladiator2.getLevel()));
+    private void announceCombat(Combat combat) {
+        view.display(String.format("\nDuel #%s: %s versus %s:",
+                combatNumber,
+                combat.getGladiator1().getName(),
+                combat.getGladiator2().getName()));
+
+        for (Gladiator gladiator : combat.getGladiators()) {
+            view.display(String.format(" - %s (%s HP, %s SP, %s DEX, %s LVL)",
+                    gladiator,
+                    gladiator.getHp(),
+                    gladiator.getSp(),
+                    gladiator.getDex(),
+                    gladiator.getLevel()));
+        }
     }
 
-    private void announceWinnerAndLoser(Gladiator winner, Gladiator loser) {
-        view.display(String.format("%s has died, %s wins!", loser.getFullName(), winner.getFullName()));
+    private void announceWinnerAndLoser(Combat combat) {
+        view.display(String.format("%s has died, %s wins!", combat.getGladiator2(), combat.getGladiator1()));
     }
 
     private void displayCombatLog(Combat combat) {

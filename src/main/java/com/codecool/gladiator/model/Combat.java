@@ -113,6 +113,13 @@ public class Combat {
         return gladiator2;
     }
 
+    /**
+     * @return the list of two gladiators
+     */
+    public List<Gladiator> getGladiators() {
+        return List.of(gladiator1, gladiator2);
+    }
+
     private void setLog(String typeOfLog) {
         String attackerName = gladiator1.getFullName();
         String defenderName = gladiator2.getFullName();
