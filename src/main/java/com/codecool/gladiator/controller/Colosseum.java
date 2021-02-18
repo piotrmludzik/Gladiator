@@ -79,16 +79,6 @@ public class Colosseum {
         return getWinner(nextStageGladiators);
     }
 
-    private boolean shouldFightAgain(List<Gladiator> gladiators) {
-        return gladiators.size() != 1;
-    }
-
-    private Gladiator getWinner(List<Gladiator> nextStageGladiators) {
-        var winner = nextStageGladiators.get(0);  // there should be only one on the list
-        winner.levelUp();
-        return winner;
-    }
-
     private List<Gladiator> runStage(Tournament stage) {
         var victoriousGladiators = new ArrayList<Gladiator>();
         for (Contestants contestants : getStageContestants(stage)) {
@@ -134,6 +124,16 @@ public class Colosseum {
         displayCombatLog(combat);
         announceWinnerAndLoser(gladiator1, gladiator2);
         return gladiator1;
+    }
+
+    private boolean shouldFightAgain(List<Gladiator> gladiators) {
+        return gladiators.size() != 1;
+    }
+
+    private Gladiator getWinner(List<Gladiator> nextStageGladiators) {
+        var winner = nextStageGladiators.get(0);  // there should be only one on the list
+        winner.levelUp();
+        return winner;
     }
 
     public void welcome() {
