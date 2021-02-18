@@ -11,18 +11,18 @@ import java.util.List;
  */
 public class Combat {
 
-    private Gladiator attacker;
-    private Gladiator defender;
+    private Gladiator gladiator1;
+    private Gladiator gladiator2;
 
     private final List<String> combatLog;
 
     public Combat(Contestants contestants) {
         if (isFiftyFifty()) {
-            attacker = contestants.gladiator1;
-            defender = contestants.gladiator2;
+            gladiator1 = contestants.gladiator1;
+            gladiator2 = contestants.gladiator2;
         } else {
-            attacker = contestants.gladiator2;
-            defender = contestants.gladiator1;
+            gladiator1 = contestants.gladiator2;
+            gladiator2 = contestants.gladiator1;
         }
 
         this.combatLog = new ArrayList<>();
@@ -41,8 +41,8 @@ public class Combat {
      */
     public Gladiator simulate() {
         if (isMissingGladiator()) {
-            if (isGladiator(attacker)) return attacker;
-            if (isGladiator(defender)) return defender;
+            if (isGladiator(gladiator1)) return gladiator1;
+            if (isGladiator(gladiator2)) return gladiator2;
 
             return null;  // both are missing
         }
@@ -55,16 +55,16 @@ public class Combat {
                 setLog("mishit");
             }
 
-            if (!defender.isDead())
+            if (!gladiator2.isDead())
                 swapGladiators();
-        } while (defender.isDead());
+        } while (gladiator2.isDead());
 
         setLog("win");
-        return attacker;
+        return gladiator1;
     }
 
     private boolean isMissingGladiator() {
-        return !(isGladiator(attacker) && isGladiator(defender));
+        return !(isGladiator(gladiator1) && isGladiator(gladiator2));
     }
 
     private boolean isGladiator(Gladiator gladiator) {
@@ -76,7 +76,7 @@ public class Combat {
     }
 
     private int getChanceOfAttackerHit() {
-        int dexComparison = (int) Math.round(attacker.getDex() - defender.getDex());
+        int dexComparison = (int) Math.round(gladiator1.getDex() - gladiator2.getDex());
 
         if (dexComparison <= 10) return 10;
         if (dexComparison >= 100) return 100;
@@ -85,8 +85,8 @@ public class Combat {
     }
 
     private void doAttackerHit() {
-        double damage  = attacker.getSp() * randomStrengthFactor();
-        defender.decreaseHp(damage);
+        double damage  = gladiator1.getSp() * randomStrengthFactor();
+        gladiator2.decreaseHp(damage);
     }
 
     private double randomStrengthFactor() {
@@ -94,28 +94,28 @@ public class Combat {
     }
 
     private void swapGladiators() {
-        Gladiator gladiatorToSwap = attacker;
-        attacker = defender;
-        defender = gladiatorToSwap;
+        Gladiator gladiatorToSwap = gladiator1;
+        gladiator1 = gladiator2;
+        gladiator2 = gladiatorToSwap;
     }
 
     /**
      * @return the first gladiator: attacker
      */
-    public Gladiator getAttacker() {
-        return attacker;
+    public Gladiator getGladiator1() {
+        return gladiator1;
     }
 
     /**
      * @return the second gladiator: defender
      */
-    public Gladiator getDefender() {
-        return defender;
+    public Gladiator getGladiator2() {
+        return gladiator2;
     }
 
     private void setLog(String typeOfLog) {
-        String attackerName = attacker.getFullName();
-        String defenderName = defender.getFullName();
+        String attackerName = gladiator1.getFullName();
+        String defenderName = gladiator2.getFullName();
 
         switch (typeOfLog) {
             case "hit":

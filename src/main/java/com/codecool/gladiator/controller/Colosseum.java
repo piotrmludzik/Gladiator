@@ -114,8 +114,8 @@ public class Colosseum {
     }
 
     private Gladiator simulateCombat(Combat combat) {
-        Gladiator gladiator1 = combat.getAttacker();
-        Gladiator gladiator2 = combat.getDefender();
+        Gladiator gladiator1 = combat.getGladiator1();
+        Gladiator gladiator2 = combat.getGladiator2();
         announceCombat(gladiator1, gladiator2);
 
         combat.simulate();
