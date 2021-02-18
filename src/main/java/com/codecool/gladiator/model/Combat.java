@@ -2,6 +2,7 @@ package com.codecool.gladiator.model;
 
 import com.codecool.gladiator.model.gladiators.Gladiator;
 import com.codecool.gladiator.util.Randomizer;
+import com.codecool.gladiator.util.Util;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -117,7 +118,9 @@ public class Combat {
 
         switch (typeOfLog) {
             case "hit":
-                combatLog.add(String.format("%s deals %s damage", attackerName, actualDamage));
+                combatLog.add(String.format("%s deals %s damage",
+                        attackerName,
+                        Util.formatNumber(actualDamage)));
                 break;
             case "mishit":
                 combatLog.add(String.format("%s missed", attackerName));

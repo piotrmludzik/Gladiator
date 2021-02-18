@@ -6,6 +6,7 @@ import com.codecool.gladiator.model.GladiatorFactory;
 import com.codecool.gladiator.model.gladiators.*;
 import com.codecool.gladiator.util.Randomizer;
 import com.codecool.gladiator.util.Tournament;
+import com.codecool.gladiator.util.Util;
 import com.codecool.gladiator.view.Viewable;
 
 import java.util.ArrayList;
@@ -175,9 +176,9 @@ public class Colosseum {
         for (Gladiator gladiator : combat.getGladiators()) {
             view.display(String.format(" - %s (%s HP, %s SP, %s DEX, %s LVL)",
                     gladiator,
-                    gladiator.getHp(),
-                    gladiator.getSp(),
-                    gladiator.getDex(),
+                    Util.formatNumber(gladiator.getHp()),
+                    Util.formatNumber(gladiator.getSp()),
+                    Util.formatNumber(gladiator.getDex()),
                     gladiator.getLevel()));
         }
 
