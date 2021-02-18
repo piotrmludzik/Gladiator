@@ -122,7 +122,7 @@ public class Colosseum {
 
         displayCombatLog(combat);
         announceWinnerAndLoser(combat);
-        return combat.getGladiator1();  // TODO: check if it's good return
+        return combat.getGladiator1();
     }
 
     private boolean shouldFightAgain(List<Gladiator> gladiators) {
